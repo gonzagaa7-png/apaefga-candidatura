@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Subscrição de Candidatura - APAEFGA</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 30px 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f3f5f7;
+        color: #1f2937;
+    }
+
+    .container {
+        max-width: 720px;
+        margin: auto;
+        background: white;
+        border-radius: 14px;
+        padding: 35px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    }
+
+    .header {
+        text-align: center;
+        border-bottom: 3px solid #1f4e79;
+        padding-bottom: 22px;
+        margin-bottom: 28px;
+    }
+
+    .header h1 {
+        margin: 0;
+        color: #1f4e79;
+        font-size: 27px;
+    }
+
+    .header p {
+        margin: 8px 0 0;
+        color: #64748b;
+    }
+
+    .list-name {
+        background: #eef5fb;
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .list-name strong {
+        color: #1f4e79;
+        font-size: 19px;
+    }
+
+    label {
+        display: block;
+        margin-top: 18px;
+        margin-bottom: 6px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 7px;
+        font-size: 16px;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #1f4e79;
+    }
+
+    .declaration {
+        margin-top: 28px;
+        padding: 18px;
+        background: #f8fafc;
+        border-left: 4px solid #1f4e79;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .check {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        margin-top: 15px;
+        font-size: 14px;
+    }
+
+    .check input {
+        margin-top: 3px;
+    }
+
+    .signature-title {
+        margin-top: 28px;
+        font-weight: bold;
+    }
+
+    #signature {
+        width: 100%;
+        height: 180px;
+        border: 2px dashed #94a3b8;
+        border-radius: 8px;
+        margin-top: 8px;
+        touch-action: none;
+        background: white;
+    }
+
+    .signature-help {
+        color: #64748b;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 12px;
+    }
+
+    button {
+        border: 0;
+        border-radius: 7px;
+        cursor: pointer;
+        font-size: 15px;
+        padding: 12px 18px;
+    }
+
+    .clear {
+        background: #e2e8f0;
+        color: #334155;
+    }
+
+    .submit {
+        width: 100%;
+        margin-top: 30px;
+        background: #1f4e79;
+        color: white;
+        font-weight: bold;
+        font-size: 17px;
+        padding: 16px;
+    }
+
+    .submit:hover {
+        background: #163b5c;
+    }
+
+    .privacy {
+        margin-top: 25px;
+        color: #64748b;
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .success {
+        display: none;
+        margin-top: 20px;
+        background: #ecfdf5;
+        padding: 15px;
+        border-radius: 7px;
+        color: #166534;
+        text-align: center;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>APAEFGA</h1>
+        <p>Associação de Pais do Agrupamento de Escolas Frei Gonçalo de Azevedo</p>
+    </div>
+
+    <div class="list-name">
+        <strong>SUBSCRIÇÃO DA CANDIDATURA</strong><br>
+        Lista Exemplo
+    </div>
+
+    <form id="form">
+
+        <label>Nome completo do associado *</label>
+        <input type="text" id="nome" required>
+
+        <label>E-mail *</label>
+        <input type="email" id="email" required>
+
+        <label>Nome do educando *</label>
+        <input type="text" id="educando" required>
+
+        <label>Escola *</label>
+        <input type="text" id="escola" required>
+
+        <label>Turma</label>
+        <input type="text" id="turma">
+
+        <div class="declaration">
+
+            <strong>Declaração de subscrição</strong>
+
+            <p>
+                Declaro que sou associado da APAEFGA - Associação de Pais
+                do Agrupamento de Escolas Frei Gonçalo de Azevedo e que,
+                de forma livre e consciente, subscrevo a candidatura
+                da <strong>Lista Exemplo</strong> aos órgãos sociais da APAEFGA.
+            </p>
+
+            <div class="check">
+                <input type="checkbox" id="associado" required>
+                <span>Confirmo que sou associado da APAEFGA.</span>
+            </div>
+
+            <div class="check">
+                <input type="checkbox" id="naocandidato" required>
+                <span>
+                    Confirmo que não integro, como candidato,
+                    a lista que estou a subscrever.
+                </span>
+            </div>
+
+            <div class="check">
+                <input type="checkbox" id="aceito" required>
+                <span>
+                    Confirmo que pretendo subscrever esta candidatura
+                    e que os dados introduzidos são verdadeiros.
+                </span>
+            </div>
+
+        </div>
+
+        <div class="signature-title">
+            Assinatura do associado *
+        </div>
+
+        <canvas id="signature"></canvas>
+
+        <div class="signature-help">
+            Assine utilizando o rato ou o dedo no telemóvel.
+        </div>
+
+        <div class="buttons">
+            <button type="button" class="clear" onclick="clearSignature()">
+                Limpar assinatura
+            </button>
+        </div>
+
+        <button type="submit" class="submit">
+            SUBMETER E GERAR PDF
+        </button>
+
+    </form>
+
+    <div id="success" class="success">
+        ✓ Subscrição registada e documento gerado.
+    </div>
+
+    <div class="privacy">
+        Os dados recolhidos destinam-se exclusivamente ao processo
+        de apresentação e validação da candidatura aos órgãos sociais
+        da APAEFGA.
+    </div>
+
+</div>
+
+
+<script>
+
+const canvas = document.getElementById("signature");
+const ctx = canvas.getContext("2d");
+
+let drawing = false;
+let hasSignature = false;
+
+
+/* Ajustar canvas */
+function resizeCanvas() {
+
+    const ratio = Math.max(window.devicePixelRatio || 1, 1);
+
+    canvas.width = canvas.offsetWidth * ratio;
+    canvas.height = canvas.offsetHeight * ratio;
+
+    ctx.scale(ratio, ratio);
+
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+}
+
+resizeCanvas();
+
+
+function position(event) {
+
+    const rect = canvas.getBoundingClientRect();
+
+    if(event.touches) {
+        return {
+            x: event.touches[0].clientX - rect.left,
+            y: event.touches[0].clientY - rect.top
+        };
+    }
+
+    return {
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
+    };
+}
+
+
+function startDrawing(event) {
+
+    event.preventDefault();
+
+    drawing = true;
+    hasSignature = true;
+
+    const pos = position(event);
+
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+}
+
+
+function draw(event) {
+
+    if(!drawing) return;
+
+    event.preventDefault();
+
+    const pos = position(event);
+
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+}
+
+
+function stopDrawing() {
+    drawing = false;
+}
+
+
+canvas.addEventListener("mousedown", startDrawing);
+canvas.addEventListener("mousemove", draw);
+canvas.addEventListener("mouseup", stopDrawing);
+canvas.addEventListener("mouseleave", stopDrawing);
+
+canvas.addEventListener("touchstart", startDrawing);
+canvas.addEventListener("touchmove", draw);
+canvas.addEventListener("touchend", stopDrawing);
+
+
+function clearSignature() {
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    hasSignature = false;
+}
+
+
+/* Gerar ID único */
+
+function generateID() {
+
+    const now = new Date();
+
+    return "APAEFGA-" +
+        now.getFullYear() +
+        String(now.getMonth()+1).padStart(2,"0") +
+        String(now.getDate()).padStart(2,"0") +
+        "-" +
+        Math.random().toString(36).substring(2,8).toUpperCase();
+}
+
+
+/* SUBMISSÃO */
+
+document.getElementById("form").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    if(!hasSignature) {
+        alert("É necessário assinar antes de submeter.");
+        return;
+    }
+
+    const nome = document.getElementById("nome").value;
+    const email = document.getElementById("email").value;
+    const educando = document.getElementById("educando").value;
+    const escola = document.getElementById("escola").value;
+    const turma = document.getElementById("turma").value;
+
+    const id = generateID();
+
+    const now = new Date();
+
+    const dataHora =
+        now.toLocaleDateString("pt-PT") +
+        " " +
+        now.toLocaleTimeString("pt-PT");
+
+
+    /* GERAR PDF */
+
+    const { jsPDF } = window.jspdf;
+
+    const pdf = new jsPDF();
+
+
+    pdf.setFontSize(18);
+    pdf.text("APAEFGA", 105, 20, {align:"center"});
+
+    pdf.setFontSize(11);
+    pdf.text(
+        "Associação de Pais do Agrupamento de Escolas Frei Gonçalo de Azevedo",
+        105,
+        28,
+        {align:"center"}
+    );
+
+
+    pdf.setFontSize(16);
+    pdf.text(
+        "SUBSCRIÇÃO DE CANDIDATURA",
+        105,
+        45,
+        {align:"center"}
+    );
+
+
+    pdf.setFontSize(11);
+
+    pdf.text("Identificação da subscrição: " + id, 20, 60);
+
+    pdf.text("Nome: " + nome, 20, 75);
+
+    pdf.text("E-mail: " + email, 20, 84);
+
+    pdf.text("Educando: " + educando, 20, 93);
+
+    pdf.text("Escola: " + escola, 20, 102);
+
+    pdf.text("Turma: " + turma, 20, 111);
+
+
+    pdf.setFontSize(12);
+    pdf.text("DECLARAÇÃO", 20, 130);
+
+
+    pdf.setFontSize(10);
+
+    const declaration =
+        "Declaro que sou associado da APAEFGA - Associação de Pais " +
+        "do Agrupamento de Escolas Frei Gonçalo de Azevedo e que, " +
+        "de forma livre e consciente, subscrevo a candidatura da " +
+        "Lista Exemplo aos órgãos sociais da APAEFGA. Confirmo ainda " +
+        "que não integro, como candidato, a lista que subscrevo.";
+
+    const lines = pdf.splitTextToSize(declaration, 170);
+
+    pdf.text(lines, 20, 140);
+
+
+    pdf.text(
+        "Data e hora da subscrição: " + dataHora,
+        20,
+        175
+    );
+
+
+    /* ASSINATURA */
+
+    const signatureImage = canvas.toDataURL("image/png");
+
+    pdf.text("Assinatura do associado:", 20, 195);
+
+    pdf.addImage(
+        signatureImage,
+        "PNG",
+        20,
+        200,
+        80,
+        30
+    );
+
+
+    pdf.setFontSize(8);
+
+    pdf.text(
+        "Documento gerado eletronicamente através do formulário de subscrição.",
+        20,
+        250
+    );
+
+    pdf.text(
+        "ID: " + id,
+        20,
+        256
+    );
+
+
+    /* DESCARREGAR */
+
+    pdf.save(
+        "Subscricao_APAEFGA_" +
+        nome.replace(/\s+/g,"_") +
+        ".pdf"
+    );
+
+
+    document.getElementById("success").style.display = "block";
+
+});
+
+</script>
+
+</body>
+</html>
