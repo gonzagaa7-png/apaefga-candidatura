@@ -7,9 +7,7 @@
 <title>Subscrição da Candidatura | APAEFGA</title>
 
 <style>
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -21,7 +19,7 @@ body {
 .container {
     max-width: 720px;
     margin: 35px auto;
-    background: #ffffff;
+    background: #fff;
     border-radius: 14px;
     box-shadow: 0 5px 25px rgba(0,0,0,.08);
     overflow: hidden;
@@ -45,9 +43,7 @@ body {
     font-size: 14px;
 }
 
-.content {
-    padding: 30px;
-}
+.content { padding: 30px; }
 
 .title {
     text-align: center;
@@ -72,18 +68,15 @@ label {
 }
 
 input[type="text"],
-input[type="email"],
-select {
+input[type="email"] {
     width: 100%;
     padding: 13px;
     border: 1px solid #ccd5df;
     border-radius: 7px;
     font-size: 16px;
-    background: white;
 }
 
-input:focus,
-select:focus {
+input:focus {
     outline: none;
     border-color: #173f67;
 }
@@ -202,15 +195,10 @@ select:focus {
     color: #a12626;
 }
 
-.required {
-    color: #b42318;
-}
+.required { color: #b42318; }
 
 @media(max-width:600px) {
-
-    body {
-        background: white;
-    }
+    body { background: white; }
 
     .container {
         margin: 0;
@@ -218,9 +206,7 @@ select:focus {
         box-shadow: none;
     }
 
-    .content {
-        padding: 22px;
-    }
+    .content { padding: 22px; }
 
     .row {
         grid-template-columns: 1fr;
@@ -234,237 +220,164 @@ select:focus {
 
 <div class="container">
 
-    <div class="header">
-        <h1>APAEFGA</h1>
-        <p>
-            Associação de Pais do Agrupamento de Escolas
-            Frei Gonçalo de Azevedo
-        </p>
-    </div>
+<div class="header">
+    <h1>APAEFGA</h1>
+    <p>
+        Associação de Pais do Agrupamento de Escolas
+        Frei Gonçalo de Azevedo
+    </p>
+</div>
 
-    <div class="content">
+<div class="content">
 
-        <div class="title">
-            <h2>Subscrição da Candidatura</h2>
+<div class="title">
+    <h2>Subscrição da Candidatura</h2>
+    <p>
+        Formulário de apoio à candidatura aos órgãos sociais
+        da APAEFGA
+    </p>
+</div>
 
-            <p>
-                Formulário de apoio à candidatura aos órgãos sociais
-                da APAEFGA
-            </p>
-        </div>
+<form id="subscriptionForm">
 
-
-        <form id="subscriptionForm">
-
-            <label>
-                Nome completo do associado
-                <span class="required">*</span>
-            </label>
-
-            <input
-                id="nome"
-                type="text"
-                autocomplete="name"
-                required
-            >
+<label>
+    Nome completo do associado
+    <span class="required">*</span>
+</label>
+<input id="nome" type="text" autocomplete="name" required>
 
 
-            <label>
-                E-mail
-                <span class="required">*</span>
-            </label>
-
-            <input
-                id="email"
-                type="email"
-                autocomplete="email"
-                required
-            >
+<label>
+    E-mail
+    <span class="required">*</span>
+</label>
+<input id="email" type="email" autocomplete="email" required>
 
 
-            <label>
-                Nome do educando
-                <span class="required">*</span>
-            </label>
-
-            <input
-                id="educando"
-                type="text"
-                required
-            >
+<label>
+    Nome do educando
+    <span class="required">*</span>
+</label>
+<input id="educando" type="text" required>
 
 
-            <div class="row">
+<div class="row">
 
-                <div>
-                    <label>
-                        Escola
-                        <span class="required">*</span>
-                    </label>
+<div>
+<label>
+    Escola
+    <span class="required">*</span>
+</label>
+<input id="escola" type="text" required>
+</div>
 
-                    <input
-                        id="escola"
-                        type="text"
-                        required
-                    >
-                </div>
+<div>
+<label>
+    Turma
+    <span class="required">*</span>
+</label>
+<input id="turma" type="text" required>
+</div>
 
-
-                <div>
-                    <label>
-                        Turma
-                        <span class="required">*</span>
-                    </label>
-
-                    <input
-                        id="turma"
-                        type="text"
-                        required
-                    >
-                </div>
-
-            </div>
+</div>
 
 
-            <div class="declaration">
+<div class="declaration">
 
-                <h3>Declaração de subscrição</h3>
+<h3>Declaração de subscrição</h3>
 
-                <p>
-                    Declaro que sou associado da APAEFGA -
-                    Associação de Pais do Agrupamento de Escolas
-                    Frei Gonçalo de Azevedo e que, de forma livre
-                    e expressa, subscrevo a candidatura apresentada
-                    aos órgãos sociais da Associação.
-                </p>
+<p>
+Declaro que sou associado da APAEFGA - Associação de Pais do
+Agrupamento de Escolas Frei Gonçalo de Azevedo e que, de forma
+livre e expressa, subscrevo a candidatura apresentada aos órgãos
+sociais da Associação.
+</p>
 
+<div class="checkbox">
+<input id="associado" type="checkbox" required>
+<span>
+Confirmo que sou associado da APAEFGA.
+</span>
+</div>
 
-                <div class="checkbox">
+<div class="checkbox">
+<input id="naoCandidato" type="checkbox" required>
+<span>
+Confirmo que não integro, como candidato, a lista cuja candidatura
+estou a subscrever.
+</span>
+</div>
 
-                    <input
-                        id="associado"
-                        type="checkbox"
-                        required
-                    >
+<div class="checkbox">
+<input id="verdadeiro" type="checkbox" required>
+<span>
+Declaro que os dados apresentados são verdadeiros e confirmo a
+minha intenção de subscrever esta candidatura.
+</span>
+</div>
 
-                    <span>
-                        Confirmo que sou associado da APAEFGA.
-                    </span>
-
-                </div>
-
-
-                <div class="checkbox">
-
-                    <input
-                        id="naoCandidato"
-                        type="checkbox"
-                        required
-                    >
-
-                    <span>
-                        Confirmo que não integro, como candidato,
-                        a lista cuja candidatura estou a subscrever.
-                    </span>
-
-                </div>
+</div>
 
 
-                <div class="checkbox">
+<div class="signature-section">
 
-                    <input
-                        id="verdadeiro"
-                        type="checkbox"
-                        required
-                    >
+<div class="signature-title">
+    Assinatura do associado
+    <span class="required">*</span>
+</div>
 
-                    <span>
-                        Declaro que os dados apresentados são verdadeiros
-                        e confirmo a minha intenção de subscrever esta
-                        candidatura.
-                    </span>
+<div class="signature-info">
+    Assine no espaço abaixo utilizando o dedo, rato ou caneta digital.
+</div>
 
-                </div>
+<canvas id="signature"></canvas>
 
-            </div>
+<button
+    type="button"
+    class="clear"
+    onclick="clearSignature()">
+    Limpar assinatura
+</button>
 
-
-            <div class="signature-section">
-
-                <div class="signature-title">
-                    Assinatura do associado
-                    <span class="required">*</span>
-                </div>
-
-                <div class="signature-info">
-                    Assine no espaço abaixo utilizando o dedo,
-                    rato ou caneta digital.
-                </div>
-
-                <canvas id="signature"></canvas>
-
-                <button
-                    type="button"
-                    class="clear"
-                    onclick="clearSignature()"
-                >
-                    Limpar assinatura
-                </button>
-
-            </div>
+</div>
 
 
-            <button
-                id="submitButton"
-                type="submit"
-                class="submit"
-            >
-                SUBSCREVER CANDIDATURA
-            </button>
+<button
+    id="submitButton"
+    type="submit"
+    class="submit">
+    SUBSCREVER CANDIDATURA
+</button>
+
+<div id="successMessage" class="message success"></div>
+<div id="errorMessage" class="message error"></div>
+
+</form>
 
 
-            <div
-                id="successMessage"
-                class="message success"
-            ></div>
+<div class="privacy">
+Os dados recolhidos através deste formulário destinam-se
+exclusivamente à recolha, organização e validação das subscrições
+da candidatura aos órgãos sociais da APAEFGA.
+</div>
 
-
-            <div
-                id="errorMessage"
-                class="message error"
-            ></div>
-
-        </form>
-
-
-        <div class="privacy">
-
-            Os dados recolhidos através deste formulário destinam-se
-            exclusivamente à recolha, organização e validação das
-            subscrições da candidatura aos órgãos sociais da APAEFGA.
-
-        </div>
-
-    </div>
-
+</div>
 </div>
 
 
 <script>
 
-/* =========================================
-   ENDEREÇO DO GOOGLE APPS SCRIPT
+/* ==========================================
+   GOOGLE APPS SCRIPT
+========================================== */
 
-   MAIS TARDE VAMOS COLOCAR AQUI
-   O ENDEREÇO QUE TERMINA EM /exec
-========================================= */
-
-const SCRIPT_URL = "";
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbxFlrNgZfSERTd2cO-SQrTwLBnhp_CjQQdWE8afjeX2oh8cTG2xWYq83_i29rlHhnH-ww/exec";
 
 
-/* =========================================
+/* ==========================================
    ASSINATURA
-========================================= */
+========================================== */
 
 const canvas = document.getElementById("signature");
 const ctx = canvas.getContext("2d");
@@ -496,15 +409,16 @@ function getPosition(event) {
 
     const rect = canvas.getBoundingClientRect();
 
-    const clientX =
-        event.touches
-        ? event.touches[0].clientX
-        : event.clientX;
+    let clientX;
+    let clientY;
 
-    const clientY =
-        event.touches
-        ? event.touches[0].clientY
-        : event.clientY;
+    if (event.touches && event.touches.length) {
+        clientX = event.touches[0].clientX;
+        clientY = event.touches[0].clientY;
+    } else {
+        clientX = event.clientX;
+        clientY = event.clientY;
+    }
 
     return {
         x: clientX - rect.left,
@@ -551,9 +465,22 @@ canvas.addEventListener("mousemove", draw);
 canvas.addEventListener("mouseup", stopDrawing);
 canvas.addEventListener("mouseleave", stopDrawing);
 
-canvas.addEventListener("touchstart", startDrawing, {passive:false});
-canvas.addEventListener("touchmove", draw, {passive:false});
-canvas.addEventListener("touchend", stopDrawing);
+canvas.addEventListener(
+    "touchstart",
+    startDrawing,
+    {passive:false}
+);
+
+canvas.addEventListener(
+    "touchmove",
+    draw,
+    {passive:false}
+);
+
+canvas.addEventListener(
+    "touchend",
+    stopDrawing
+);
 
 
 function clearSignature() {
@@ -569,9 +496,9 @@ function clearSignature() {
 }
 
 
-/* =========================================
-   CRIAÇÃO DO ID
-========================================= */
+/* ==========================================
+   CRIAR IDENTIFICAÇÃO ÚNICA
+========================================== */
 
 function createID() {
 
@@ -595,16 +522,15 @@ function createID() {
 }
 
 
-/* =========================================
+/* ==========================================
    SUBMISSÃO
-========================================= */
+========================================== */
 
 document
 .getElementById("subscriptionForm")
 .addEventListener("submit", async function(event) {
 
     event.preventDefault();
-
 
     const success =
         document.getElementById("successMessage");
@@ -623,18 +549,7 @@ document
     if (!hasSignature) {
 
         error.innerText =
-            "É necessário assinar antes de submeter.";
-
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    if (!SCRIPT_URL) {
-
-        error.innerText =
-            "O formulário ainda não está ligado ao sistema de registo.";
+        "É necessário assinar antes de submeter.";
 
         error.style.display = "block";
 
@@ -650,51 +565,62 @@ document
         id: id,
 
         nome:
-            document.getElementById("nome").value.trim(),
+        document.getElementById("nome")
+        .value.trim(),
 
         email:
-            document.getElementById("email").value.trim(),
+        document.getElementById("email")
+        .value.trim(),
 
         educando:
-            document.getElementById("educando").value.trim(),
+        document.getElementById("educando")
+        .value.trim(),
 
         escola:
-            document.getElementById("escola").value.trim(),
+        document.getElementById("escola")
+        .value.trim(),
 
         turma:
-            document.getElementById("turma").value.trim(),
+        document.getElementById("turma")
+        .value.trim(),
 
         associado:
-            document.getElementById("associado").checked,
+        document.getElementById("associado")
+        .checked,
 
         naoCandidato:
-            document.getElementById("naoCandidato").checked,
+        document.getElementById("naoCandidato")
+        .checked,
 
         declaracaoVerdadeira:
-            document.getElementById("verdadeiro").checked,
+        document.getElementById("verdadeiro")
+        .checked,
 
         assinatura:
-            canvas.toDataURL("image/png")
+        canvas.toDataURL("image/png")
     };
 
 
     button.disabled = true;
-    button.innerText = "A REGISTAR SUBSCRIÇÃO...";
+
+    button.innerText =
+    "A REGISTAR SUBSCRIÇÃO...";
 
 
     try {
 
-        const response = await fetch(
+        const response =
+        await fetch(
             SCRIPT_URL,
             {
                 method: "POST",
-
                 body: JSON.stringify(dados)
             }
         );
 
 
-        const resultado = await response.json();
+        const resultado =
+        await response.json();
 
 
         if (resultado.status !== "sucesso") {
@@ -707,33 +633,36 @@ document
 
 
         success.innerHTML =
-            "<strong>Subscrição registada com sucesso.</strong><br>" +
-            "Referência: " + id;
+        "<strong>Subscrição registada com sucesso.</strong><br><br>" +
+        "Referência:<br><strong>" +
+        id +
+        "</strong>";
 
         success.style.display = "block";
 
 
         document
-            .getElementById("subscriptionForm")
-            .reset();
+        .getElementById("subscriptionForm")
+        .reset();
 
 
         clearSignature();
 
 
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: "smooth"
+        success.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
         });
-
 
     }
 
     catch (err) {
 
+        console.error(err);
+
         error.innerText =
-            "Não foi possível registar a subscrição. " +
-            "Por favor, tente novamente.";
+        "Não foi possível registar a subscrição. " +
+        "Por favor, tente novamente.";
 
         error.style.display = "block";
 
@@ -744,7 +673,7 @@ document
         button.disabled = false;
 
         button.innerText =
-            "SUBSCREVER CANDIDATURA";
+        "SUBSCREVER CANDIDATURA";
     }
 
 });
