@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Subscrição da Candidatura | APAEFGA</title>
+<title>Apoio à Candidatura - Lista M | APAEFGA</title>
 
 <style>
 * {
@@ -61,6 +61,17 @@ body {
 
 .title p {
     color: #667788;
+    font-size: 14px;
+}
+
+.lista-destaque {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 18px;
+    background: #173f67;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
     font-size: 14px;
 }
 
@@ -208,7 +219,6 @@ select:focus {
 }
 
 @media(max-width:600px) {
-
     body {
         background: white;
     }
@@ -246,12 +256,17 @@ select:focus {
     <div class="content">
 
         <div class="title">
-            <h2>Subscrição da Candidatura</h2>
+            <h2>Apoio à Candidatura</h2>
+
+            <div class="lista-destaque">
+                LISTA M
+            </div>
+
             <p>
-                Formulário de apoio à candidatura aos órgãos sociais
-                da APAEFGA
+                Formulário de apoio à Lista M candidata aos órgãos sociais da APAEFGA
             </p>
         </div>
+
 
         <form id="subscriptionForm">
 
@@ -340,13 +355,14 @@ select:focus {
                 <div>
 
                     <label>
-                        Turma
+                        Ano e Turma
                         <span class="required">*</span>
                     </label>
 
                     <input
                         id="turma"
                         type="text"
+                        placeholder="Ex.: 5.º B"
                         required
                     >
 
@@ -362,8 +378,8 @@ select:focus {
                 <p>
                     Declaro que sou associado da APAEFGA - Associação de Pais
                     do Agrupamento de Escolas Frei Gonçalo de Azevedo e que,
-                    de forma livre e expressa, subscrevo a candidatura
-                    apresentada aos órgãos sociais da Associação.
+                    de forma livre e expressa, subscrevo a candidatura da
+                    <strong>Lista M</strong> aos órgãos sociais da Associação.
                 </p>
 
 
@@ -392,7 +408,7 @@ select:focus {
 
                     <span>
                         Confirmo que não integro, como candidato,
-                        a lista cuja candidatura estou a subscrever.
+                        a Lista M cuja candidatura estou a subscrever.
                     </span>
 
                 </div>
@@ -408,7 +424,8 @@ select:focus {
 
                     <span>
                         Declaro que os dados apresentados são verdadeiros
-                        e confirmo a minha intenção de subscrever esta candidatura.
+                        e confirmo a minha intenção de subscrever a candidatura
+                        da Lista M.
                     </span>
 
                 </div>
@@ -444,7 +461,7 @@ select:focus {
                 id="submitButton"
                 type="submit"
                 class="submit">
-                SUBSCREVER CANDIDATURA
+                SUBSCREVER LISTA M
             </button>
 
 
@@ -464,7 +481,8 @@ select:focus {
         <div class="privacy">
             Os dados recolhidos através deste formulário destinam-se
             exclusivamente à recolha, organização e validação das
-            subscrições da candidatura aos órgãos sociais da APAEFGA.
+            subscrições da candidatura da Lista M aos órgãos sociais
+            da APAEFGA.
         </div>
 
     </div>
@@ -474,23 +492,16 @@ select:focus {
 
 <script>
 
-/* ==========================================
-   GOOGLE APPS SCRIPT
-========================================== */
+/* GOOGLE APPS SCRIPT */
 
 const SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycbxFlrNgZfSERTd2cO-SQrTwLBnhp_CjQQdWE8afjeX2oh8cTG2xWYq83_i29rlHhnH-ww/exec";
 
 
-/* ==========================================
-   ASSINATURA
-========================================== */
+/* ASSINATURA */
 
-const canvas =
-    document.getElementById("signature");
-
-const ctx =
-    canvas.getContext("2d");
+const canvas = document.getElementById("signature");
+const ctx = canvas.getContext("2d");
 
 let drawing = false;
 let hasSignature = false;
@@ -498,17 +509,11 @@ let hasSignature = false;
 
 function setupCanvas() {
 
-    const rect =
-        canvas.getBoundingClientRect();
+    const rect = canvas.getBoundingClientRect();
+    const ratio = window.devicePixelRatio || 1;
 
-    const ratio =
-        window.devicePixelRatio || 1;
-
-    canvas.width =
-        rect.width * ratio;
-
-    canvas.height =
-        rect.height * ratio;
+    canvas.width = rect.width * ratio;
+    canvas.height = rect.height * ratio;
 
     ctx.setTransform(
         ratio,
@@ -530,39 +535,25 @@ setupCanvas();
 
 function getPosition(event) {
 
-    const rect =
-        canvas.getBoundingClientRect();
+    const rect = canvas.getBoundingClientRect();
 
     let clientX;
     let clientY;
 
-    if (
-        event.touches &&
-        event.touches.length
-    ) {
+    if (event.touches && event.touches.length) {
 
-        clientX =
-            event.touches[0].clientX;
-
-        clientY =
-            event.touches[0].clientY;
+        clientX = event.touches[0].clientX;
+        clientY = event.touches[0].clientY;
 
     } else {
 
-        clientX =
-            event.clientX;
-
-        clientY =
-            event.clientY;
+        clientX = event.clientX;
+        clientY = event.clientY;
     }
 
     return {
-
-        x:
-        clientX - rect.left,
-
-        y:
-        clientY - rect.top
+        x: clientX - rect.left,
+        y: clientY - rect.top
     };
 }
 
@@ -573,8 +564,7 @@ function startDrawing(event) {
 
     drawing = true;
 
-    const pos =
-        getPosition(event);
+    const pos = getPosition(event);
 
     ctx.beginPath();
 
@@ -595,8 +585,7 @@ function draw(event) {
 
     hasSignature = true;
 
-    const pos =
-        getPosition(event);
+    const pos = getPosition(event);
 
     ctx.lineTo(
         pos.x,
@@ -608,7 +597,6 @@ function draw(event) {
 
 
 function stopDrawing() {
-
     drawing = false;
 }
 
@@ -664,17 +652,13 @@ function clearSignature() {
 }
 
 
-/* ==========================================
-   CRIAR IDENTIFICAÇÃO ÚNICA
-========================================== */
+/* CRIAR IDENTIFICAÇÃO ÚNICA */
 
 function createID() {
 
-    const date =
-        new Date();
+    const date = new Date();
 
-    const year =
-        date.getFullYear();
+    const year = date.getFullYear();
 
     const month =
         String(
@@ -693,14 +677,12 @@ function createID() {
         .toUpperCase();
 
     return (
-        `APAEFGA-${year}${month}${day}-${random}`
+        `APAEFGA-M-${year}${month}${day}-${random}`
     );
 }
 
 
-/* ==========================================
-   SUBMISSÃO
-========================================== */
+/* SUBMISSÃO */
 
 document
 .getElementById("subscriptionForm")
@@ -726,11 +708,8 @@ async function(event) {
         );
 
 
-    success.style.display =
-        "none";
-
-    error.style.display =
-        "none";
+    success.style.display = "none";
+    error.style.display = "none";
 
 
     if (!hasSignature) {
@@ -738,20 +717,20 @@ async function(event) {
         error.innerText =
             "É necessário assinar antes de submeter.";
 
-        error.style.display =
-            "block";
+        error.style.display = "block";
 
         return;
     }
 
 
-    const id =
-        createID();
+    const id = createID();
 
 
     const dados = {
 
         id: id,
+
+        lista: "Lista M",
 
         nome:
         document
@@ -840,7 +819,7 @@ async function(event) {
 
 
         success.innerHTML =
-            "<strong>Subscrição registada com sucesso.</strong><br><br>" +
+            "<strong>Subscrição da Lista M registada com sucesso.</strong><br><br>" +
             "Referência:<br><strong>" +
             id +
             "</strong>";
@@ -882,11 +861,10 @@ async function(event) {
 
     finally {
 
-        button.disabled =
-            false;
+        button.disabled = false;
 
         button.innerText =
-            "SUBSCREVER CANDIDATURA";
+            "SUBSCREVER LISTA M";
     }
 
 });
