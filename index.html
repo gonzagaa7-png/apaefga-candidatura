@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Apoio à Candidatura - Lista M | APAEFGA</title>
+<title>Apoio à Lista M | APAEFGA</title>
 
 <style>
 * {
@@ -67,12 +67,12 @@ body {
 .lista-destaque {
     display: inline-block;
     margin-top: 8px;
-    padding: 6px 18px;
+    padding: 7px 22px;
     background: #173f67;
     color: white;
     border-radius: 20px;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 label {
@@ -256,6 +256,7 @@ select:focus {
     <div class="content">
 
         <div class="title">
+
             <h2>Apoio à Candidatura</h2>
 
             <div class="lista-destaque">
@@ -265,6 +266,7 @@ select:focus {
             <p>
                 Formulário de apoio à Lista M candidata aos órgãos sociais da APAEFGA
             </p>
+
         </div>
 
 
@@ -373,12 +375,12 @@ select:focus {
 
             <div class="declaration">
 
-                <h3>Declaração de subscrição</h3>
+                <h3>Declaração de apoio</h3>
 
                 <p>
                     Declaro que sou associado da APAEFGA - Associação de Pais
                     do Agrupamento de Escolas Frei Gonçalo de Azevedo e que,
-                    de forma livre e expressa, subscrevo a candidatura da
+                    de forma livre e expressa, apoio e subscrevo a candidatura da
                     <strong>Lista M</strong> aos órgãos sociais da Associação.
                 </p>
 
@@ -408,7 +410,7 @@ select:focus {
 
                     <span>
                         Confirmo que não integro, como candidato,
-                        a Lista M cuja candidatura estou a subscrever.
+                        a Lista M cuja candidatura estou a apoiar.
                     </span>
 
                 </div>
@@ -424,7 +426,7 @@ select:focus {
 
                     <span>
                         Declaro que os dados apresentados são verdadeiros
-                        e confirmo a minha intenção de subscrever a candidatura
+                        e confirmo a minha intenção de apoiar a candidatura
                         da Lista M.
                     </span>
 
@@ -461,7 +463,7 @@ select:focus {
                 id="submitButton"
                 type="submit"
                 class="submit">
-                SUBSCREVER LISTA M
+                APOIAR LISTA M
             </button>
 
 
@@ -480,9 +482,8 @@ select:focus {
 
         <div class="privacy">
             Os dados recolhidos através deste formulário destinam-se
-            exclusivamente à recolha, organização e validação das
-            subscrições da candidatura da Lista M aos órgãos sociais
-            da APAEFGA.
+            exclusivamente à recolha, organização e validação dos apoios
+            à candidatura da Lista M aos órgãos sociais da APAEFGA.
         </div>
 
     </div>
@@ -491,8 +492,6 @@ select:focus {
 
 
 <script>
-
-/* GOOGLE APPS SCRIPT */
 
 const SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycbxFlrNgZfSERTd2cO-SQrTwLBnhp_CjQQdWE8afjeX2oh8cTG2xWYq83_i29rlHhnH-ww/exec";
@@ -515,14 +514,7 @@ function setupCanvas() {
     canvas.width = rect.width * ratio;
     canvas.height = rect.height * ratio;
 
-    ctx.setTransform(
-        ratio,
-        0,
-        0,
-        ratio,
-        0,
-        0
-    );
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
     ctx.lineWidth = 2;
     ctx.lineCap = "round";
@@ -567,19 +559,13 @@ function startDrawing(event) {
     const pos = getPosition(event);
 
     ctx.beginPath();
-
-    ctx.moveTo(
-        pos.x,
-        pos.y
-    );
+    ctx.moveTo(pos.x, pos.y);
 }
 
 
 function draw(event) {
 
-    if (!drawing) {
-        return;
-    }
+    if (!drawing) return;
 
     event.preventDefault();
 
@@ -587,11 +573,7 @@ function draw(event) {
 
     const pos = getPosition(event);
 
-    ctx.lineTo(
-        pos.x,
-        pos.y
-    );
-
+    ctx.lineTo(pos.x, pos.y);
     ctx.stroke();
 }
 
@@ -601,25 +583,10 @@ function stopDrawing() {
 }
 
 
-canvas.addEventListener(
-    "mousedown",
-    startDrawing
-);
-
-canvas.addEventListener(
-    "mousemove",
-    draw
-);
-
-canvas.addEventListener(
-    "mouseup",
-    stopDrawing
-);
-
-canvas.addEventListener(
-    "mouseleave",
-    stopDrawing
-);
+canvas.addEventListener("mousedown", startDrawing);
+canvas.addEventListener("mousemove", draw);
+canvas.addEventListener("mouseup", stopDrawing);
+canvas.addEventListener("mouseleave", stopDrawing);
 
 canvas.addEventListener(
     "touchstart",
@@ -652,7 +619,7 @@ function clearSignature() {
 }
 
 
-/* CRIAR IDENTIFICAÇÃO ÚNICA */
+/* ID ÚNICO */
 
 function createID() {
 
@@ -661,14 +628,12 @@ function createID() {
     const year = date.getFullYear();
 
     const month =
-        String(
-            date.getMonth() + 1
-        ).padStart(2,"0");
+        String(date.getMonth() + 1)
+        .padStart(2,"0");
 
     const day =
-        String(
-            date.getDate()
-        ).padStart(2,"0");
+        String(date.getDate())
+        .padStart(2,"0");
 
     const random =
         Math.random()
@@ -676,13 +641,11 @@ function createID() {
         .substring(2,8)
         .toUpperCase();
 
-    return (
-        `APAEFGA-M-${year}${month}${day}-${random}`
-    );
+    return `APAEFGA-M-${year}${month}${day}-${random}`;
 }
 
 
-/* SUBMISSÃO */
+/* ENVIO */
 
 document
 .getElementById("subscriptionForm")
@@ -693,19 +656,13 @@ async function(event) {
     event.preventDefault();
 
     const success =
-        document.getElementById(
-            "successMessage"
-        );
+        document.getElementById("successMessage");
 
     const error =
-        document.getElementById(
-            "errorMessage"
-        );
+        document.getElementById("errorMessage");
 
     const button =
-        document.getElementById(
-            "submitButton"
-        );
+        document.getElementById("submitButton");
 
 
     success.style.display = "none";
@@ -715,7 +672,7 @@ async function(event) {
     if (!hasSignature) {
 
         error.innerText =
-            "É necessário assinar antes de submeter.";
+            "É necessário assinar antes de enviar o apoio.";
 
         error.style.display = "block";
 
@@ -733,61 +690,44 @@ async function(event) {
         lista: "Lista M",
 
         nome:
-        document
-        .getElementById("nome")
-        .value
-        .trim(),
+        document.getElementById("nome")
+        .value.trim(),
 
         email:
-        document
-        .getElementById("email")
-        .value
-        .trim(),
+        document.getElementById("email")
+        .value.trim(),
 
         educando:
-        document
-        .getElementById("educando")
-        .value
-        .trim(),
+        document.getElementById("educando")
+        .value.trim(),
 
         escola:
-        document
-        .getElementById("escola")
-        .value
-        .trim(),
+        document.getElementById("escola")
+        .value.trim(),
 
         turma:
-        document
-        .getElementById("turma")
-        .value
-        .trim(),
+        document.getElementById("turma")
+        .value.trim(),
 
         associado:
-        document
-        .getElementById("associado")
+        document.getElementById("associado")
         .checked,
 
         naoCandidato:
-        document
-        .getElementById("naoCandidato")
+        document.getElementById("naoCandidato")
         .checked,
 
         declaracaoVerdadeira:
-        document
-        .getElementById("verdadeiro")
+        document.getElementById("verdadeiro")
         .checked,
 
         assinatura:
-        canvas.toDataURL(
-            "image/png"
-        )
+        canvas.toDataURL("image/png")
     };
 
 
     button.disabled = true;
-
-    button.innerText =
-        "A REGISTAR SUBSCRIÇÃO...";
+    button.innerText = "A REGISTAR APOIO...";
 
 
     try {
@@ -806,10 +746,7 @@ async function(event) {
             await response.json();
 
 
-        if (
-            resultado.status !==
-            "sucesso"
-        ) {
+        if (resultado.status !== "sucesso") {
 
             throw new Error(
                 resultado.mensagem ||
@@ -819,20 +756,18 @@ async function(event) {
 
 
         success.innerHTML =
-            "<strong>Subscrição da Lista M registada com sucesso.</strong><br><br>" +
+            "<strong>Apoio à Lista M registado com sucesso.</strong><br><br>" +
+            "Obrigado pelo seu apoio.<br><br>" +
             "Referência:<br><strong>" +
             id +
             "</strong>";
 
 
-        success.style.display =
-            "block";
+        success.style.display = "block";
 
 
         document
-        .getElementById(
-            "subscriptionForm"
-        )
+        .getElementById("subscriptionForm")
         .reset();
 
 
@@ -851,11 +786,10 @@ async function(event) {
         console.error(err);
 
         error.innerText =
-            "Não foi possível registar a subscrição. " +
+            "Não foi possível registar o apoio. " +
             "Por favor, tente novamente.";
 
-        error.style.display =
-            "block";
+        error.style.display = "block";
 
     }
 
@@ -864,7 +798,815 @@ async function(event) {
         button.disabled = false;
 
         button.innerText =
-            "SUBSCREVER LISTA M";
+            "APOIAR LISTA M";
+    }
+
+});
+
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Apoio à Lista M | APAEFGA</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f6f9;
+    color: #243447;
+}
+
+.container {
+    max-width: 720px;
+    margin: 35px auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 5px 25px rgba(0,0,0,.08);
+    overflow: hidden;
+}
+
+.header {
+    background: #173f67;
+    color: white;
+    padding: 32px 25px;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.header p {
+    margin: 8px 0 0;
+    opacity: .9;
+    font-size: 14px;
+}
+
+.content {
+    padding: 30px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.title h2 {
+    color: #173f67;
+    margin-bottom: 7px;
+}
+
+.title p {
+    color: #667788;
+    font-size: 14px;
+}
+
+.lista-destaque {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 7px 22px;
+    background: #173f67;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin: 18px 0 6px;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccd5df;
+    border-radius: 7px;
+    font-size: 16px;
+    background: white;
+    color: #243447;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #173f67;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.declaration {
+    margin-top: 30px;
+    background: #f6f9fc;
+    border-left: 4px solid #173f67;
+    padding: 20px;
+    border-radius: 5px;
+    line-height: 1.55;
+    font-size: 14px;
+}
+
+.declaration h3 {
+    margin-top: 0;
+    color: #173f67;
+}
+
+.checkbox {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    align-items: flex-start;
+}
+
+.checkbox input {
+    margin-top: 3px;
+    transform: scale(1.2);
+}
+
+.signature-section {
+    margin-top: 30px;
+}
+
+.signature-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.signature-info {
+    font-size: 12px;
+    color: #718096;
+    margin-bottom: 8px;
+}
+
+#signature {
+    width: 100%;
+    height: 180px;
+    border: 2px dashed #9aa9b8;
+    border-radius: 8px;
+    background: white;
+    touch-action: none;
+    display: block;
+}
+
+.clear {
+    margin-top: 10px;
+    background: #e8edf2;
+    border: none;
+    padding: 10px 17px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.submit {
+    margin-top: 30px;
+    width: 100%;
+    padding: 17px;
+    background: #173f67;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background: #102f4e;
+}
+
+.submit:disabled {
+    background: #8fa1b2;
+    cursor: wait;
+}
+
+.privacy {
+    margin-top: 25px;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #718096;
+}
+
+.message {
+    display: none;
+    margin-top: 20px;
+    padding: 18px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.success {
+    background: #e9f8ef;
+    color: #176638;
+}
+
+.error {
+    background: #fff0f0;
+    color: #a12626;
+}
+
+.required {
+    color: #b42318;
+}
+
+@media(max-width:600px) {
+    body {
+        background: white;
+    }
+
+    .container {
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .content {
+        padding: 22px;
+    }
+
+    .row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>APAEFGA</h1>
+        <p>
+            Associação de Pais do Agrupamento de Escolas
+            Frei Gonçalo de Azevedo
+        </p>
+    </div>
+
+    <div class="content">
+
+        <div class="title">
+
+            <h2>Apoio à Candidatura</h2>
+
+            <div class="lista-destaque">
+                LISTA M
+            </div>
+
+            <p>
+                Formulário de apoio à Lista M candidata aos órgãos sociais da APAEFGA
+            </p>
+
+        </div>
+
+
+        <form id="subscriptionForm">
+
+            <label>
+                Nome completo do associado
+                <span class="required">*</span>
+            </label>
+
+            <input
+                id="nome"
+                type="text"
+                autocomplete="name"
+                required
+            >
+
+
+            <label>
+                E-mail
+                <span class="required">*</span>
+            </label>
+
+            <input
+                id="email"
+                type="email"
+                autocomplete="email"
+                required
+            >
+
+
+            <label>
+                Nome do educando
+                <span class="required">*</span>
+            </label>
+
+            <input
+                id="educando"
+                type="text"
+                required
+            >
+
+
+            <div class="row">
+
+                <div>
+
+                    <label>
+                        Escola
+                        <span class="required">*</span>
+                    </label>
+
+                    <select id="escola" required>
+
+                        <option value="" selected disabled>
+                            Selecione a escola
+                        </option>
+
+                        <option value="Escola Básica e Secundária Frei Gonçalo de Azevedo">
+                            Escola Básica e Secundária Frei Gonçalo de Azevedo
+                        </option>
+
+                        <option value="EB/JI nº2 da Abóboda">
+                            EB/JI nº2 da Abóboda
+                        </option>
+
+                        <option value="EB nº2 de Tires">
+                            EB nº2 de Tires
+                        </option>
+
+                        <option value="EB/JI Rómulo de Carvalho">
+                            EB/JI Rómulo de Carvalho
+                        </option>
+
+                        <option value="EB de Trajouce">
+                            EB de Trajouce
+                        </option>
+
+                        <option value="EB1/JI Padre Andrade">
+                            EB1/JI Padre Andrade
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label>
+                        Ano e Turma
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        id="turma"
+                        type="text"
+                        placeholder="Ex.: 5.º B"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="declaration">
+
+                <h3>Declaração de apoio</h3>
+
+                <p>
+                    Declaro que sou associado da APAEFGA - Associação de Pais
+                    do Agrupamento de Escolas Frei Gonçalo de Azevedo e que,
+                    de forma livre e expressa, apoio e subscrevo a candidatura da
+                    <strong>Lista M</strong> aos órgãos sociais da Associação.
+                </p>
+
+
+                <div class="checkbox">
+
+                    <input
+                        id="associado"
+                        type="checkbox"
+                        required
+                    >
+
+                    <span>
+                        Confirmo que sou associado da APAEFGA.
+                    </span>
+
+                </div>
+
+
+                <div class="checkbox">
+
+                    <input
+                        id="naoCandidato"
+                        type="checkbox"
+                        required
+                    >
+
+                    <span>
+                        Confirmo que não integro, como candidato,
+                        a Lista M cuja candidatura estou a apoiar.
+                    </span>
+
+                </div>
+
+
+                <div class="checkbox">
+
+                    <input
+                        id="verdadeiro"
+                        type="checkbox"
+                        required
+                    >
+
+                    <span>
+                        Declaro que os dados apresentados são verdadeiros
+                        e confirmo a minha intenção de apoiar a candidatura
+                        da Lista M.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="signature-section">
+
+                <div class="signature-title">
+                    Assinatura do associado
+                    <span class="required">*</span>
+                </div>
+
+                <div class="signature-info">
+                    Assine no espaço abaixo utilizando o dedo,
+                    rato ou caneta digital.
+                </div>
+
+                <canvas id="signature"></canvas>
+
+                <button
+                    type="button"
+                    class="clear"
+                    onclick="clearSignature()">
+                    Limpar assinatura
+                </button>
+
+            </div>
+
+
+            <button
+                id="submitButton"
+                type="submit"
+                class="submit">
+                APOIAR LISTA M
+            </button>
+
+
+            <div
+                id="successMessage"
+                class="message success">
+            </div>
+
+            <div
+                id="errorMessage"
+                class="message error">
+            </div>
+
+        </form>
+
+
+        <div class="privacy">
+            Os dados recolhidos através deste formulário destinam-se
+            exclusivamente à recolha, organização e validação dos apoios
+            à candidatura da Lista M aos órgãos sociais da APAEFGA.
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbxFlrNgZfSERTd2cO-SQrTwLBnhp_CjQQdWE8afjeX2oh8cTG2xWYq83_i29rlHhnH-ww/exec";
+
+
+/* ASSINATURA */
+
+const canvas = document.getElementById("signature");
+const ctx = canvas.getContext("2d");
+
+let drawing = false;
+let hasSignature = false;
+
+
+function setupCanvas() {
+
+    const rect = canvas.getBoundingClientRect();
+    const ratio = window.devicePixelRatio || 1;
+
+    canvas.width = rect.width * ratio;
+    canvas.height = rect.height * ratio;
+
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = "#111111";
+}
+
+setupCanvas();
+
+
+function getPosition(event) {
+
+    const rect = canvas.getBoundingClientRect();
+
+    let clientX;
+    let clientY;
+
+    if (event.touches && event.touches.length) {
+
+        clientX = event.touches[0].clientX;
+        clientY = event.touches[0].clientY;
+
+    } else {
+
+        clientX = event.clientX;
+        clientY = event.clientY;
+    }
+
+    return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+    };
+}
+
+
+function startDrawing(event) {
+
+    event.preventDefault();
+
+    drawing = true;
+
+    const pos = getPosition(event);
+
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+}
+
+
+function draw(event) {
+
+    if (!drawing) return;
+
+    event.preventDefault();
+
+    hasSignature = true;
+
+    const pos = getPosition(event);
+
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+}
+
+
+function stopDrawing() {
+    drawing = false;
+}
+
+
+canvas.addEventListener("mousedown", startDrawing);
+canvas.addEventListener("mousemove", draw);
+canvas.addEventListener("mouseup", stopDrawing);
+canvas.addEventListener("mouseleave", stopDrawing);
+
+canvas.addEventListener(
+    "touchstart",
+    startDrawing,
+    {passive:false}
+);
+
+canvas.addEventListener(
+    "touchmove",
+    draw,
+    {passive:false}
+);
+
+canvas.addEventListener(
+    "touchend",
+    stopDrawing
+);
+
+
+function clearSignature() {
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    hasSignature = false;
+}
+
+
+/* ID ÚNICO */
+
+function createID() {
+
+    const date = new Date();
+
+    const year = date.getFullYear();
+
+    const month =
+        String(date.getMonth() + 1)
+        .padStart(2,"0");
+
+    const day =
+        String(date.getDate())
+        .padStart(2,"0");
+
+    const random =
+        Math.random()
+        .toString(36)
+        .substring(2,8)
+        .toUpperCase();
+
+    return `APAEFGA-M-${year}${month}${day}-${random}`;
+}
+
+
+/* ENVIO */
+
+document
+.getElementById("subscriptionForm")
+.addEventListener(
+"submit",
+async function(event) {
+
+    event.preventDefault();
+
+    const success =
+        document.getElementById("successMessage");
+
+    const error =
+        document.getElementById("errorMessage");
+
+    const button =
+        document.getElementById("submitButton");
+
+
+    success.style.display = "none";
+    error.style.display = "none";
+
+
+    if (!hasSignature) {
+
+        error.innerText =
+            "É necessário assinar antes de enviar o apoio.";
+
+        error.style.display = "block";
+
+        return;
+    }
+
+
+    const id = createID();
+
+
+    const dados = {
+
+        id: id,
+
+        lista: "Lista M",
+
+        nome:
+        document.getElementById("nome")
+        .value.trim(),
+
+        email:
+        document.getElementById("email")
+        .value.trim(),
+
+        educando:
+        document.getElementById("educando")
+        .value.trim(),
+
+        escola:
+        document.getElementById("escola")
+        .value.trim(),
+
+        turma:
+        document.getElementById("turma")
+        .value.trim(),
+
+        associado:
+        document.getElementById("associado")
+        .checked,
+
+        naoCandidato:
+        document.getElementById("naoCandidato")
+        .checked,
+
+        declaracaoVerdadeira:
+        document.getElementById("verdadeiro")
+        .checked,
+
+        assinatura:
+        canvas.toDataURL("image/png")
+    };
+
+
+    button.disabled = true;
+    button.innerText = "A REGISTAR APOIO...";
+
+
+    try {
+
+        const response =
+            await fetch(
+                SCRIPT_URL,
+                {
+                    method: "POST",
+                    body: JSON.stringify(dados)
+                }
+            );
+
+
+        const resultado =
+            await response.json();
+
+
+        if (resultado.status !== "sucesso") {
+
+            throw new Error(
+                resultado.mensagem ||
+                "Não foi possível registar."
+            );
+        }
+
+
+        success.innerHTML =
+            "<strong>Apoio à Lista M registado com sucesso.</strong><br><br>" +
+            "Obrigado pelo seu apoio.<br><br>" +
+            "Referência:<br><strong>" +
+            id +
+            "</strong>";
+
+
+        success.style.display = "block";
+
+
+        document
+        .getElementById("subscriptionForm")
+        .reset();
+
+
+        clearSignature();
+
+
+        success.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        error.innerText =
+            "Não foi possível registar o apoio. " +
+            "Por favor, tente novamente.";
+
+        error.style.display = "block";
+
+    }
+
+    finally {
+
+        button.disabled = false;
+
+        button.innerText =
+            "APOIAR LISTA M";
     }
 
 });
